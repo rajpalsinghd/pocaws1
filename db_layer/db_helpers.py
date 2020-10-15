@@ -37,10 +37,14 @@ def add_our_user(connection,cursor,user):
  try:
   sql = "INSERT INTO users (username, email,domain) VALUES (%s, %s,%s)"  
   val = (user['username'],user['email'],user['domain'])
+  print(sql)
+  print(val)
   cursor.execute(sql, val)
   connection.commit()
+  print(cursor.rowcount)
   return(cursor.rowcount)
  except Exception as e:
+   print(e)
    return None         
       
   
