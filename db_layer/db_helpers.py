@@ -5,6 +5,7 @@ from mysql.connector import Error
 
 def get_connection():
  try:
+    #connection string for amazon rds.
     connection = mysql.connector.connect(host='rajdb.c08axwwkzq2b.ap-south-1.rds.amazonaws.com',db='mydatabase',user='admin',password='rajpal123')
     if connection.is_connected():
       return connection
