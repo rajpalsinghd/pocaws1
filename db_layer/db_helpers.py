@@ -2,7 +2,7 @@ import mysql.connector
 from mysql.connector import Error
 
 
-
+#This function is responsible for getting a connection object.
 def get_connection():
  try:
     #connection string for amazon rds.
@@ -14,7 +14,7 @@ def get_connection():
    print("Enter the error in logs",e)
    return None
 
-
+#This function is responsible for getting cursor object.
 def get_cursor_object(connection):
  if connection==None:
   return None
@@ -28,12 +28,16 @@ def get_cursor_object(connection):
    print(e)
    return None
 
+  
+  
+#This function is responsible for creating a table(alredy decided for learning purpose).  
 def create_table(cursor):
  if cursor==None:
   return False
  cursor.execute("Create table users (username varchar(255), email varchar(255),domain varchar(255))")
  return True
 
+#This function is responsible for adding user credentials(user object).
 def add_our_user(connection,cursor,user):
  try:
   sql = "INSERT INTO users (username, email,domain) VALUES (%s, %s,%s)"  
@@ -48,7 +52,7 @@ def add_our_user(connection,cursor,user):
    print(e)
    return None         
       
-  
+#This function is responsible for returning list of users.
 def get_all_users(cursor):
  sql="Select * from users"
  cursor.execute(sql)
@@ -57,7 +61,7 @@ def get_all_users(cursor):
  print("I am ",result)
  return result
  
-
+#This function is responsible for closing connection successfully.
 def close_connection(connection,cursor):
  if(connection):connection.close()
  if(cursor):cursor.close()
